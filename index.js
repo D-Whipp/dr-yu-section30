@@ -10,19 +10,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //1. GET a random joke
 app.get('/', (req, res) => {
   const randomJokeIdx = Math.floor(Math.random() * jokes.length);
-  console.log('JOKES: ', jokes);
-  console.log('INDEX: ', randomJokeIdx);
   res.send(jokes[randomJokeIdx]);
 });
 
 //2. GET a specific joke
 app.get('/jokes/:id', (req, res) => {
-  // console.log('Specific ID route hit');
-  // console.log('Req Params: ', req.params);
   res.send(jokes[req.params.id]);
 });
 
 //3. GET a jokes by filtering on the joke type
+app.get('/filter', (req, res) => {
+  console.log('filtered query: ', req.query);
+  res.send('hi');
+});
 
 //4. POST a new joke
 
