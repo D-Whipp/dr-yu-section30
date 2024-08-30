@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { application } from 'express';
 import bodyParser from 'body-parser';
 
 const app = express();
@@ -6,6 +6,7 @@ const port = 3000;
 const masterKey = '4VGP2DN-6EWM4SJ-N6FGRHV-Z3PR3TT';
 
 app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.urlencoded({ extended: true }));
 
 //1. GET a random joke
 app.get('/', (req, res) => {
@@ -29,6 +30,16 @@ app.get('/filter', (req, res) => {
 });
 
 //4. POST a new joke
+app.post('/jokes', (req, res) => {
+  const newJoke = {
+    id: jokes.length + 1,
+    jokeText: req.body.text,
+    jokeType: req.body.type,
+  };
+  console.log('Req Body: ', req.body);
+  console.log('User Post: ', newJoke);
+  res.json(newJoke);
+});
 
 //5. PUT a joke
 
