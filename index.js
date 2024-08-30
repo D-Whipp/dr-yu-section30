@@ -32,12 +32,13 @@ app.get('/filter', (req, res) => {
 //4. POST a new joke
 app.post('/jokes', (req, res) => {
   const newJoke = {
-    id: jokes.length + 1,
+    id: Math.floor(Math.random() * 10000000000),
     jokeText: req.body.text,
     jokeType: req.body.type,
   };
-  console.log('Req Body: ', req.body);
-  console.log('User Post: ', newJoke);
+  // console.log('Req Body: ', req.body);
+  // console.log('User Post: ', newJoke);
+  jokes.push(newJoke);
   res.json(newJoke);
 });
 
